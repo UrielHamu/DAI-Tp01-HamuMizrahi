@@ -1,0 +1,17 @@
+{
+  "name": "galu",
+  "version": "1.0.0",
+  "description": "Primer TP",
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "TP1" : "node index.js",
+    "TP2" : "node index2.js",
+    "TP3" : "node index3.js"
+
+
+  }
+}
