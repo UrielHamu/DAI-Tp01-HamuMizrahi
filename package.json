@@ -8,10 +8,11 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "TP1" : "node index.js",
-    "TP2" : "node index2.js",
-    "TP3" : "node index3.js"
-
-
+    "TP1": "node index.js",
+    "TP2": "node index2.js",
+    "TP3": "node index3.js"
+  },
+  "dependencies": {
+    "currency-map-country": "^1.0.12"
   }
 }
