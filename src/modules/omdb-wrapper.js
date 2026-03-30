@@ -15,9 +15,9 @@ const OMDBSearchByPage = async (searchText, page = 1) => {
 
     const requestString = `http://www.omdbapi.com/?apikey=9638f283&page=${page}&s=${searchText}`;
     const response = await axios.get(requestString);
-    returnObject.respuesta=response.response;
-    returnObject.cantidadTotal = response.totalResults;
-    returnObject.datos=response.search;
+    returnObject.respuesta=response.data.Response;
+    returnObject.cantidadTotal = response.data.totalResults;
+    returnObject.datos=response.data.Search;
     return returnObject;
 };
 
@@ -29,16 +29,19 @@ const OMDBSearchComplete = async (searchText) => {
       datos         : []
     };
     let pagina=1;
+    let requestString;
+    let response;
     do{
-        const requestString = `http://www.omdbapi.com/?apikey=9638f283&page=${page}&s=${searchText}`;
-        const response = await axios.get(requestString);
-        returnObject.respuesta=response.response;
-        returnObject.cantidadTotal = response.totalResults;
-        returnObject.datos+=response.search;
+        requestString = `http://www.omdbapi.com/?apikey=9638f283&page=${pagina}&s=${searchText}`;
+        response = await axios.get(requestString);
+        returnObject.respuesta=response.data.Response;
+        returnObject.cantidadTotal = response.data.totalResults;
+        if(returnObject.respuesta){
+        returnObject.datos+=response.data.Search;
+        }
         pagina++;
-    }while(returnObject.respuesta==true)
-
-  // No seas vago, acá hay que hacer el cuerpo de la función!!!
+    }while(returnObject.respuesta)
+        returnObject.respuesta=true;
   return returnObject;
 };
 
@@ -48,9 +51,13 @@ const OMDBGetByImdbID = async (imdbID) => {
       cantidadTotal : 0,
       datos         : {}
     };
-  // No seas vago, acá hay que hacer el cuerpo de la función!!!
+
+    const requestString = `http://www.omdbapi.com/?apikey=9638f283&i=${imdbID}`;
+    const response = await axios.get(requestString);
+    returnObject.respuesta=response.data.Response;
+    returnObject.cantidadTotal = response.data.totalResults;
+    returnObject.datos=response.data.Search;
   return returnObject;
 };
 
-// Exporto todo lo que yo quiero exponer del módulo:
 export {OMDBSearchByPage, OMDBSearchComplete, OMDBGetByImdbID};
