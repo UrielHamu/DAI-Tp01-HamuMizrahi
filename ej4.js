@@ -1,7 +1,7 @@
 import fs from 'fs';
 
-const ARCHIVO_ENTRADA = "./archivo-entrada.txt";
-const ARCHIVO_SALIDA = "./archivo-salida.txt";
+const ARCHIVO_ENTRADA = "src/archivo-entrada.txt";
+const ARCHIVO_SALIDA = "src/archivo-salida.txt";
 console.clear();
 
 copiar(ARCHIVO_ENTRADA, ARCHIVO_SALIDA);
