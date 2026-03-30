@@ -34,14 +34,14 @@ const OMDBSearchComplete = async (searchText) => {
     do{
         requestString = `http://www.omdbapi.com/?apikey=9638f283&page=${pagina}&s=${searchText}`;
         response = await axios.get(requestString);
-        returnObject.respuesta=response.data.Response;
+        returnObject.respuesta=response.data.Response=="True";
         returnObject.cantidadTotal = response.data.totalResults;
         if(returnObject.respuesta){
-        returnObject.datos+=response.data.Search;
+        returnObject.datos.push(...response.data.Search);
         }
         pagina++;
-    }while(returnObject.respuesta)
-        returnObject.respuesta=true;
+    }while(returnObject.respuesta=="True")
+        returnObject.respuesta="True";
   return returnObject;
 };
 
@@ -54,9 +54,9 @@ const OMDBGetByImdbID = async (imdbID) => {
 
     const requestString = `http://www.omdbapi.com/?apikey=9638f283&i=${imdbID}`;
     const response = await axios.get(requestString);
-    returnObject.respuesta=response.data.Response;
-    returnObject.cantidadTotal = response.data.totalResults;
-    returnObject.datos=response.data.Search;
+    returnObject.respuesta=response.data.Response=="True";
+    returnObject.datos=response.data;
+    returnObject.cantidadTotal=1;
   return returnObject;
 };
 
