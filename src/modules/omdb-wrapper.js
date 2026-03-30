@@ -40,7 +40,7 @@ const OMDBSearchComplete = async (searchText) => {
         returnObject.datos.push(...response.data.Search);
         }
         pagina++;
-    }while(returnObject.respuesta=="True")
+    }while(returnObject.respuesta)
         returnObject.respuesta="True";
   return returnObject;
 };
